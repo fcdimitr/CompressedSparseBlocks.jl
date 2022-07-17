@@ -1,0 +1,13 @@
+name = "CompressedSparseBlocks"
+uuid = "c9633620-f88e-4e67-b3af-074911471b78"
+authors = ["Dimitris Floros <fcdimitr@ece.auth.gr>", "Nikos Pitsianis <pitsiani@ece.auth.gr>"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
