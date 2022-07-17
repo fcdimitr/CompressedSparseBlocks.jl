@@ -21,7 +21,7 @@ x        = rand( n )
 
 end
 
-@testset "matrix multiplication" begin
+@testset "matrix-vector multiplication" begin
 
   B = SparseMatrixCSB( A )
   @test A * x ≈ B * x
