@@ -40,14 +40,14 @@ $(TYPEDSIGNATURES)
 
 Query the number of `Cilk` workers.
 """
-getWorkers() = @ccall CSBLIB.getWorkers()::Cint
+getWorkers() = @ccall libcsb.getWorkers()::Cint
 
 @doc """
 $(TYPEDSIGNATURES)
 
 Set the number of `Cilk` workers to `np`.
 """
-setWorkers(np::Int64) = @ccall CSBLIB.setWorkers(np::Int64)::Cvoid
+setWorkers(np::Int64) = @ccall libcsb.setWorkers(np::Int64)::Cvoid
 
 function prepareCSB(A::SparseMatrixCSC{Tv,Ti}, beta = 0) where {Tv, Ti <: Integer}
   mktemp() do path, io
@@ -70,7 +70,7 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
       val::Vector{$Tv}, row::Vector{$Ti}, colptr::Vector{$Ti},
       nzmax::$Ti, m::$Ti, n::$Ti, workers::Integer,
       forcelogbeta::Integer)
-        ccall( ($("prepareCSB_" * Tvname * "_" * Tiname), CSBLIB), Ptr{Cvoid},
+        ccall( ($("prepareCSB_" * Tvname * "_" * Tiname), libcsb), Ptr{Cvoid},
                (Ptr{$Tv}, Ptr{$Ti}, Ptr{$Ti}, $Ti, $Ti, $Ti, Cint, Cint),
                val, row, colptr, nzmax, m, n, workers, forcelogbeta)
 
@@ -78,7 +78,7 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
 
     @eval @inline function _gespmvCSB!(
       y::Vector{$Tv}, A::SparseMatrixCSB{$Tv,$Ti}, x::Vector{$Tv})
-      ccall( ($("gespmv_" * Tvname * "_" * Tiname), CSBLIB), Ptr{Cvoid},
+      ccall( ($("gespmv_" * Tvname * "_" * Tiname), libcsb), Ptr{Cvoid},
              (Ptr{Cvoid}, Ptr{$Tv}, Ptr{$Tv}),
              A.ptr, x, y)
 
@@ -86,7 +86,7 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
 
     @eval @inline function _deallocate!(
       A::SparseMatrixCSB{$Tv,$Ti})
-      ccall( ($("deallocate_" * Tvname * "_" * Tiname), CSBLIB), Ptr{Cvoid},
+      ccall( ($("deallocate_" * Tvname * "_" * Tiname), libcsb), Ptr{Cvoid},
              (Ptr{Cvoid}, ), A.ptr)
 
     end

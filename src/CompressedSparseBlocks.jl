@@ -2,7 +2,7 @@ module CompressedSparseBlocks
 
 export SparseMatrixCSB
 
-using Libdl, LinearAlgebra, SparseArrays, DocStringExtensions
+using Libdl, LinearAlgebra, SparseArrays, DocStringExtensions, csb_jll
 
 import LinearAlgebra:
   mul!
