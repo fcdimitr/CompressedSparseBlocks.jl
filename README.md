@@ -18,8 +18,8 @@ wrapper extends the use of `CSB` to the `Julia` user communities and
 applications.
 
 The CSB storage format offers similar performance in shared-memory
-parallel systems for $\mathbf{A} \mathbf{x}$ and $\mathbf{A}
-\mathbf{x}^{\rm T}$. The block data format enables increased
+parallel systems for $\mathbf{A} \mathbf{x}$ and 
+$\mathbf{A} \mathbf{x}^{\rm T}$. The block data format enables increased
 performance by increasing locality on the memory accesses of the
 left-hand side and the right-hand side vectors.  Threads are
 dynamically scheduled to improve load balancing via the work-stealing
