@@ -1,4 +1,4 @@
-# CSB: Compressed Sparse Blocks
+# Julia Interface to Matrix-Vector Multiplications in CSB Format
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
