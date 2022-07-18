@@ -35,7 +35,7 @@ The package can be added using the Julia package manager. From the
 Julia REPL, type ] to enter the Pkg REPL mode and run
 
 ``` julia
-pkg> add DocStringExtensions
+pkg> add CompressedSparseBlocks
 ```
 
 ## Documentation
