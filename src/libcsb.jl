@@ -96,7 +96,7 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
 
     end
 
-    for DIM in 1:32
+    for DIM in 2:32
       @eval @inline function _gespmmCSB!(
         y::Matrix{$Tv}, A::SparseMatrixCSB{$Tv,$Ti}, x::Matrix{$Tv}, ::Val{$DIM})
         ccall( ($("gespmm_" * Tvname * "_" * Tiname * "_" * string(DIM) * "_rhs"), libcsb), Ptr{Cvoid},
@@ -153,7 +153,11 @@ function mul!(y::AbstractVecOrMat, A::SparseMatrixCSB, x::AbstractMatrix)
   @assert size(y,2) == size(x,2)
 
   fill!( y, 0 )
-  _gespmmCSB!( y, A, x, Val(size(x,2)) )
+  if size(x,2) == 1
+    _gespmvCSB!( vec(y), A, vec(x) )
+  else
+    _gespmmCSB!( y, A, x, Val(size(x,2)) )
+  end
   y
 
 end
@@ -178,7 +182,11 @@ function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{T
   @assert size(y,2) == size(x,2)
 
   fill!( y, 0 )
-  _gespmmtCSB!( y, A, x, Val(size(x,2)) )
+  if size(x,2) == 1
+    _gespmvtCSB!( vec(y), A, vec(x) )
+  else
+    _gespmmtCSB!( y, A, x, Val(size(x,2)) )
+  end
   y
 
 end
