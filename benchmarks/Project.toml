@@ -1,0 +1,7 @@
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+CompressedSparseBlocks = "c9633620-f88e-4e67-b3af-074911471b78"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+MKLSparse = "0c723cd3-b8cd-5d40-b370-ba682dde9aae"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
