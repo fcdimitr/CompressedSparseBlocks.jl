@@ -1,6 +1,6 @@
 name = "CompressedSparseBlocks"
 uuid = "c9633620-f88e-4e67-b3af-074911471b78"
-authors = ["Dimitris Floros <fcdimitr@ece.auth.gr>", "Nikos Pitsianis <pitsiani@ece.auth.gr>"]
+authors = ["Dimitris Floros <fcdimitr@ece.auth.gr>", "Nikos Pitsianis <pitsiani@ece.auth.gr>", "Xiaobai Sun <xiaobai@cs.duke.edu>"]
 version = "0.1.0"
 
 [deps]
