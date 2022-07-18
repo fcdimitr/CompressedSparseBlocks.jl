@@ -91,3 +91,4 @@ dims      = [1, 3, 10, 32]
 
 times = benchmark_csr_mv(sizes, densities, dims)
 f     = make_figure( sizes, densities, dims, times... )
+save( joinpath( @__DIR__, "benchmark-results.pdf" ), f )
