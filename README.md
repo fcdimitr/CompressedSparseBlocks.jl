@@ -31,7 +31,7 @@ vectors to be applied with the same matrix $A$.
 
 <figure>
 <img src="https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.png" alt="Benchmarks" style="width:100%">
-<figcaption align = "center"><i>Fig.1 - Comparison between CSB and MKLSparse. We report parallel (p = 40) execution times on 2x Intel Xeon E5-2640 v4 2.4GHz CPUs.</i></figcaption>
+<figcaption align = "center"><i>Fig.1 - Comparison in wall-clock execution time between CSB and MKLSparse. The parallel execution times are with 40 threads on 2 processors Intel Xeon E5-2640 v4 2.4GHz. The average degree is the average number of nonzeros per row/column.</i></figcaption>
 </figure>
 
 ## Installation
@@ -77,7 +77,7 @@ Notices, vol. 33, no. 5, pp. 212–223, 1998, doi:
 
 
 
-## Contributors on the Julia wrapper
+## Contributors of the Julia interface
 
 *Design and development*:  
 Dimitris Floros<sup>1</sup>, Nikos Pitsianis<sup>1,2</sup>, Xiaobai Sun<sup>2</sup>
