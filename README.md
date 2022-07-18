@@ -27,7 +27,10 @@ paradigm of the `Cilk` runtime environment. On large, sparse matrices,
 the `CSB` format outperforms both the `Julia` built-in sparse
 matrix-vector routines and the `MKLSparse` package.
 
-![benchmark-results.png](https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.png)
+<figure>
+<img src="https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.png" alt="Benchmarks" style="width:100%">
+<figcaption align = "center"><i>Fig.1 - Comparison between CSB and MKLSparse. We report parallel (p = 40) execution times on 2x Intel Xeon E5-2640 v4 2.4GHz CPUs.</i></figcaption>
+</figure>
 
 ## Installation
 
