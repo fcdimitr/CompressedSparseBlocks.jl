@@ -5,27 +5,29 @@
 | [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] |
 
 
-We provide a `Julia` interface, i.e., a wrapper to
-`CompressedSparseBlocks (CSB)`, which is a high-performance library
-for fast matrix-vector (`gAxpy`) and transpose matrix-vector
-(`gAtxpy`) products with large, sparse matrices, on shared-memory
-computers. This wrappers supports up to 32 right-hand side vectors. The
-CSB data storage format was introduced by A. Buluç, J. Fineman,
-M. Frigo, J. Gilbert, and C. Leiserson [1]. The library is written in
-`C/C++` and is available 
-[here](https://people.eecs.berkeley.edu/~aydin/csb/csb.html).  This
-wrapper extends the use of `CSB` to the `Julia` user communities and
-applications.
+We provide a `Julia` interface (a wrapper) to the `Compressed Sparse
+Blocks (CSB)` library. The library is written in `C/C++`, available at
+<https://people.eecs.berkeley.edu/~aydin/csb/html/index.html>. The
+library supports fast computation of large sparse matrix-vector
+products, `Ax` and `A^{\rm T}x` operations specifically, with sparse
+matrix $A$ in the format of compressed sparse blocks (CSB), on
+shared-memory computer systems. The CSB format was introduced by A.
+Buluç, J. Fineman, M. Frigo, J. Gilbert, and C. Leiserson [1].
 
-The CSB storage format offers similar performance in shared-memory
-parallel systems for $\mathbf{A} \mathbf{x}$ and 
-$\mathbf{A}^{\rm T} \mathbf{x}$. The block data format enables increased
-performance by increasing locality on the memory accesses of the
-left-hand side and the right-hand side vectors.  Threads are
-dynamically scheduled to improve load balancing via the work-stealing
-paradigm of the `Cilk` runtime environment. On large, sparse matrices,
-the `CSB` format outperforms both the `Julia` built-in sparse
-matrix-vector routines and the `MKLSparse` package.
+The CSB format and library have the following advantages: (1) The
+matrix-vector operations in CSB format often outpace the conventional
+general-purposes sparse formats, namely, CSC and CSR \[2\]. (2) The
+multiplication with the transposed matrix $A^{\rm T}$ do not suffer from
+longer latency than that with $A$. The symmetric performance eliminates
+the need for an additional copy in a different layout for $A^{\rm T}$
+(as with CSR or CSC) for reducing the speed gap at the cost of double
+memory consumption. (3) The library is integrated with `Cilk` \[3\]. The
+latter offers optimal run-time scheduling (in theory and in practice) on
+parallel computers with shared memory.
+
+This Julia interface is intended to extend and ease the use of `CSB` to
+broader applications. This interface supports up to $32$ multiple
+vectors to be applied with the same matrix $A$.
 
 <figure>
 <img src="https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.png" alt="Benchmarks" style="width:100%">
@@ -35,7 +37,8 @@ matrix-vector routines and the `MKLSparse` package.
 ## Installation
 
 The package can be added using the Julia package manager. From the
-Julia REPL, type ] to enter the Pkg REPL mode and run
+Julia REPL, type ] to enter the Pkg REPL mode and execute the
+following command
 
 ``` julia
 pkg> add CompressedSparseBlocks
@@ -60,6 +63,18 @@ matrix-transpose-vector multiplication using compressed sparse
 blocks](http://dx.doi.org/10.1145/1583991.1584053),” in Proceedings of
 the 21st Annual Symposium on Parallelism in Algorithms and
 Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
+
+[2] S. C. Eisenstat, M. C. Gursky, M. H. Schultz, A. H. Sherman,
+“[Yale Sparse Matrix
+Package](https://apps.dtic.mil/dtic/tr/fulltext/u2/a047724.pdf),”
+technical report, 1977.
+
+[3] M. Frigo, C. E. Leiserson, and K. H. Randall, “[The implementation
+of the Cilk-5 multithreaded
+language](https://doi.org/10.1145/277652.277725),” ACM SIGPLAN
+Notices, vol. 33, no. 5, pp. 212–223, 1998, doi:
+10.1145/277652.277725.
+
 
 
 ## Contributors on the Julia wrapper
