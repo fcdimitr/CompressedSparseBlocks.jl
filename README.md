@@ -26,18 +26,14 @@ work-stealing paradigm of the `Cilk` runtime environment. On large,
 sparse matrices, the `CSB` format outperforms both the `Julia`
 built-in sparse matrix-vector routines and the `MKLSparse` package.
 
-![benchmark-results.png](...)
+![benchmark-results.png](https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.pdf)
 
 ## References
 
 [1] A. Buluç, J. T. Fineman, M. Frigo, J. R. Gilbert, and
-C. E. Leiserson, “Parallel sparse matrix-vector and
+C. E. Leiserson, “[Parallel sparse matrix-vector and
 matrix-transpose-vector multiplication using compressed sparse
-blocks,” in Proceedings of the 21st Annual Symposium on Parallelism in
-Algorithms and Architectures, 2009, pp. 233–244. 
-doi: 10.1145/1583991.1584053.
+blocks](http://dx.doi.org/10.1145/1583991.1584053),” in Proceedings of
+the 21st Annual Symposium on Parallelism in Algorithms and
+Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
 
-
-For information see the article [Parallel sparse matrix-vector and
-matrix-transpose-vector multiplication using compressed sparse
-blocks](http://dx.doi.org/10.1145/1583991.1584053).
