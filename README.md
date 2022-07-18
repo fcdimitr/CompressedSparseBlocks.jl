@@ -62,7 +62,19 @@ the 21st Annual Symposium on Parallelism in Algorithms and
 Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
 
 
-[docs-latest-img]: https://img.shields.io/badge/docs-stable-blue.svg
+## Contributors on the Julia wrapper
+
+*Design and development*:  
+Dimitris Floros<sup>1</sup>, Nikos Pitsianis<sup>1,2</sup>, Xiaobai Sun<sup>2</sup>
+
+<sup>1</sup> Department of Electrical and Computer Engineering,
+Aristotle University of Thessaloniki, Thessaloniki 54124, Greece  
+<sup>2</sup> Department of Computer Science, Duke University, Durham, NC
+27708, USA
+
+
+
+[docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
 [docs-latest-url]: https://fcdimitr.github.io/CompressedSparseBlocks.jl/dev
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
@@ -75,13 +87,3 @@ Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
 [codecov-url]: https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl
 
 [issues-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/issues
-
-## Contributors on the Julia wrapper
-
-*Design and development*:  
-Dimitris Floros<sup>1</sup>, Nikos Pitsianis<sup>1,2</sup>, Xiaobai Sun<sup>2</sup>
-
-<sup>1</sup> Department of Electrical and Computer Engineering,
-Aristotle University of Thessaloniki, Thessaloniki 54124, Greece  
-<sup>2</sup> Department of Computer Science, Duke University, Durham, NC
-27708, USA
