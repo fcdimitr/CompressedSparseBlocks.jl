@@ -12,8 +12,8 @@ for fast matrix-vector (`gAxpy`) and transpose matrix-vector
 computers. This wrappers supports up to 32 right-hand side vectors. The
 CSB data storage format was introduced by A. Buluç, J. Fineman,
 M. Frigo, J. Gilbert, and C. Leiserson [1]. The library is written in
-`C/C++` and is available at
-https://people.eecs.berkeley.edu/~aydin/csb/html/index.html .  This
+`C/C++` and is available 
+[here](https://people.eecs.berkeley.edu/~aydin/csb/csb.html).  This
 wrapper extends the use of `CSB` to the `Julia` user communities and
 applications.
 
