@@ -6,20 +6,20 @@
 
 
 We provide a `Julia` interface, i.e., a wrapper to
-`CompressedSparseBlocks (CSB)`, which is a high-performance software
+`CompressedSparseBlocks (CSB)`, which is a high-performance library
 for fast matrix-vector (`gAxpy`) and transpose matrix-vector
 (`gAtxpy`) products with large, sparse matrices, on shared-memory
-computers. It also accommodates up to 32 right-hand side vectors. The
+computers. This wrappers supports up to 32 right-hand side vectors. The
 CSB data storage format was introduced by A. Buluç, J. Fineman,
-M. Frigo, J. Gilbert, and C. Leiserson [1]. The software written in
-`C/C++` is available at
+M. Frigo, J. Gilbert, and C. Leiserson [1]. The library is written in
+`C/C++` and is available at
 https://people.eecs.berkeley.edu/~aydin/csb/html/index.html .  This
 wrapper extends the use of `CSB` to the `Julia` user communities and
 applications.
 
 The CSB storage format offers similar performance in shared-memory
 parallel systems for $\mathbf{A} \mathbf{x}$ and 
-$\mathbf{A} \mathbf{x}^{\rm T}$. The block data format enables increased
+$\mathbf{A}^{\rm T} \mathbf{x}$. The block data format enables increased
 performance by increasing locality on the memory accesses of the
 left-hand side and the right-hand side vectors.  Threads are
 dynamically scheduled to improve load balancing via the work-stealing
@@ -75,3 +75,13 @@ Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
 [codecov-url]: https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl
 
 [issues-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/issues
+
+## Contributors on the Julia wrapper
+
+*Design and development*:  
+Dimitris Floros<sup>1</sup>, Nikos Pitsianis<sup>1,2</sup>, Xiaobai Sun<sup>2</sup>
+
+<sup>1</sup> Department of Electrical and Computer Engineering,
+Aristotle University of Thessaloniki, Thessaloniki 54124, Greece  
+<sup>2</sup> Department of Computer Science, Duke University, Durham, NC
+27708, USA

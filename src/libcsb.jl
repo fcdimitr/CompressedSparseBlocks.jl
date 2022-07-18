@@ -155,6 +155,8 @@ function mul!(y::AbstractVecOrMat, A::SparseMatrixCSB, x::AbstractMatrix)
   fill!( y, 0 )
   if size(x,2) == 1
     _gespmvCSB!( vec(y), A, vec(x) )
+  elseif size(x,2) > 32
+    throw( DimensionMismatch("This CSB wrapper has been compiled to support up to 32 columns at a time.") )
   else
     _gespmmCSB!( y, A, x, Val(size(x,2)) )
   end
@@ -184,6 +186,8 @@ function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{T
   fill!( y, 0 )
   if size(x,2) == 1
     _gespmvtCSB!( vec(y), A, vec(x) )
+  elseif size(x,2) > 32
+    throw( DimensionMismatch("This CSB wrapper has been compiled to support up to 32 columns at a time.") )
   else
     _gespmmtCSB!( y, A, x, Val(size(x,2)) )
   end
