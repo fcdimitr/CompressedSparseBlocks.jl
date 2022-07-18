@@ -1,9 +1,9 @@
 # CompressedSparseBlocks
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://fcdimitr.github.io/CompressedSparseBlocks.jl/stable)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://fcdimitr.github.io/CompressedSparseBlocks.jl/dev)
-[![Build Status](https://github.com/fcdimitr/CompressedSparseBlocks.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/fcdimitr/CompressedSparseBlocks.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl)
+| **Documentation**                                                               | **Build Status**                                                                                |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] |
+
 
 We provide a `Julia` interface, i.e., a wrapper to
 `CompressedSparseBlocks (CSB)`, which is a high-performance software
@@ -29,6 +29,26 @@ matrix-vector routines and the `MKLSparse` package.
 
 ![benchmark-results.png](https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.png)
 
+## Installation
+
+The package can be added using the Julia package manager. From the
+Julia REPL, type ] to enter the Pkg REPL mode and run
+
+``` julia
+pkg> add DocStringExtensions
+```
+
+## Documentation
+
+- [**STABLE**][docs-stable-url] &mdash; **most recently tagged version of the documentation.**
+- [**LATEST**][docs-latest-url] &mdash; *in-development version of the documentation.*
+
+## Contributing and Questions
+
+Contributions are very welcome, as are feature requests and
+suggestions. Please open an [issue][issues-url] if you encounter any
+problems.
+
 ## References
 
 [1] A. Buluç, J. T. Fineman, M. Frigo, J. R. Gilbert, and
@@ -38,3 +58,17 @@ blocks](http://dx.doi.org/10.1145/1583991.1584053),” in Proceedings of
 the 21st Annual Symposium on Parallelism in Algorithms and
 Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
 
+
+[docs-latest-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-latest-url]: https://fcdimitr.github.io/CompressedSparseBlocks.jl/dev
+
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-stable-url]: https://fcdimitr.github.io/CompressedSparseBlocks.jl/stable
+
+[github-action-img]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/actions/workflows/CI.yml/badge.svg?branch=main
+[github-action-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/actions/workflows/CI.yml?query=branch%3Amain
+
+[codecov-img]: https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl
+
+[issues-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/issues
