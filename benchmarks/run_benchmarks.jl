@@ -63,7 +63,7 @@ function make_figure(
 
   axs = [
     Axis( f[i,j]; xscale = log2, yscale = log10,
-          xlabel = i == 1 ? "matrix size" : "",
+          xlabel = i == l ? "matrix size" : "",
           ylabel = j == 1 ? "minimum exec. time (μs)" : "",
           title = "avg. degree = $(densities[j]) | $(dims[i]) RHS" )
     for i = 1:l, j = 1:n
