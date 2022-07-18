@@ -9,7 +9,7 @@ We provide a `Julia` interface (a wrapper) to the `Compressed Sparse
 Blocks (CSB)` library. The library is written in `C/C++`, available at
 <https://people.eecs.berkeley.edu/~aydin/csb/html/index.html>. The
 library supports fast computation of large sparse matrix-vector
-products, `Ax` and `A^{\rm T}x` operations specifically, with sparse
+products, $Ax$ and $A^{\rm T}x$ operations specifically, with sparse
 matrix $A$ in the format of compressed sparse blocks (CSB), on
 shared-memory computer systems. The CSB format was introduced by A.
 Buluç, J. Fineman, M. Frigo, J. Gilbert, and C. Leiserson [1].
@@ -67,7 +67,7 @@ Architectures, 2009, pp. 233–244.  doi: 10.1145/1583991.1584053.
 [2] S. C. Eisenstat, M. C. Gursky, M. H. Schultz, A. H. Sherman,
 “[Yale Sparse Matrix
 Package](https://apps.dtic.mil/dtic/tr/fulltext/u2/a047724.pdf),”
-technical report, 1977.
+Technical Report, 1977.
 
 [3] M. Frigo, C. E. Leiserson, and K. H. Randall, “[The implementation
 of the Cilk-5 multithreaded
