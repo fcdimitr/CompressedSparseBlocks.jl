@@ -13,6 +13,8 @@ import Base:
 import SparseArrays:
   nnz
 
+const SLACKNESS = 8
+
 include( "libcsb.jl" )
 
 
