@@ -34,10 +34,10 @@ function benchmark_csr_mv(sizes, densities, dims)
           y3 = zeros(n, r)
           y4 = zeros(n, r)
         end
-        times_csc[ i,j,k] = @belapsed mul!(y1, A,    x)
-        times_csct[i,j,k] = @belapsed mul!(y2, (A'), x)
-        times_csb[ i,j,k] = @belapsed mul!(y3, B,    x)
-        times_csbt[i,j,k] = @belapsed mul!(y4, (B'), x)
+        times_csc[ i,j,k] = @belapsed mul!($y1, $A,    $x)
+        times_csct[i,j,k] = @belapsed mul!($y2, $(A'), $x)
+        times_csb[ i,j,k] = @belapsed mul!($y3, $B,    $x)
+        times_csbt[i,j,k] = @belapsed mul!($y4, $(B'), $x)
 
         @assert y1 ≈ y3
         @assert y2 ≈ y4
