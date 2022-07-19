@@ -31,7 +31,7 @@ vectors to be applied with the same matrix $A$.
 
 <figure>
 <img src="https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/benchmarks/benchmark-results.png" alt="Benchmarks" style="width:100%">
-<figcaption align = "center"><i>Fig.1 - Comparison in wall-clock execution time between CSB and MKLSparse. The parallel execution times are with 40 threads on 2 processors Intel Xeon E5-2640 v4 2.4GHz. The average degree is the average number of nonzeros per row/column.</i></figcaption>
+<figcaption align = "center"><i>Fig.1 - Comparison in wall-clock execution time between CSB and MKLSparse. The parallel execution times are with 4 threads on an Intel Core i5-4288U @2.6GHz CPU. The average degree is the average number of nonzeros per row/column.</i></figcaption>
 </figure>
 
 ## Installation
