@@ -17,7 +17,7 @@ Buluç, J. Fineman, M. Frigo, J. Gilbert, and C. Leiserson [1].
 The CSB format and library have the following advantages: (1) The
 matrix-vector operations in CSB format often outpace the conventional
 general-purposes sparse formats, namely, CSC and CSR \[2\]. (2) The
-multiplication with the transposed matrix $A^{\rm T}$ do not suffer from
+multiplication with the transposed matrix $A^{\rm T}$ does not suffer from
 longer latency than that with $A$. The symmetric performance eliminates
 the need for an additional copy in a different layout for $A^{\rm T}$
 (as with CSR or CSC) for reducing the speed gap at the cost of double
