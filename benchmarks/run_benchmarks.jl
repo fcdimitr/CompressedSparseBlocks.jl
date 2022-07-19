@@ -62,19 +62,19 @@ function make_figure(
   l = length(dims)
 
   axs = [
-    Axis( f[i,j]; xscale = log2, yscale = log10,
+    Axis( f[i,j]; xscale = log2, # yscale = log10,
           xlabel = i == l ? "matrix size" : "",
-          ylabel = j == 1 ? "minimum exec. time (μs)" : "",
-          title = "avg. degree = $(densities[j]) | $(dims[i]) RHS" )
+          ylabel = j == 1 ? "relative speedup over CSC" : "",
+          title = "avg. degree = $(densities[j]) | $(dims[i]) vectors" )
     for i = 1:l, j = 1:n
       ]
 
   for i = 1 : l
     for j = 1:n
-      scatterlines!( axs[i,j], sizes, vec( times_csc[: ,j,i]  ) .* 1e6; label = "CSC" )
-      scatterlines!( axs[i,j], sizes, vec( times_csct[:,j,i] ) .* 1e6; label = "CSC transp." )
-      scatterlines!( axs[i,j], sizes, vec( times_csb[: ,j,i]  ) .* 1e6; label = "CSB" )
-      scatterlines!( axs[i,j], sizes, vec( times_csbt[:,j,i] ) .* 1e6; label = "CSB transp." )
+      # scatterlines!( axs[i,j], sizes, vec( times_csc[: ,j,i]  ) .* 1e6; label = "CSC" )
+      scatterlines!( axs[i,j], sizes, vec( times_csct[:,j,i] )  .\ vec( times_csc[: ,j,i]  ); label = "CSC transp." )
+      scatterlines!( axs[i,j], sizes, vec( times_csb[: ,j,i]  ) .\ vec( times_csc[: ,j,i]  ); label = "CSB" )
+      scatterlines!( axs[i,j], sizes, vec( times_csbt[:,j,i] )  .\ vec( times_csc[: ,j,i]  ); label = "CSB transp." )
     end
   end
 
@@ -91,4 +91,4 @@ dims      = [1, 3, 10, 32]
 
 times = benchmark_csr_mv(sizes, densities, dims)
 f     = make_figure( sizes, densities, dims, times... )
-save( joinpath( @__DIR__, "benchmark-results.png" ), f )
+save( joinpath( @__DIR__, "benchmark-rel-results.png" ), f )
