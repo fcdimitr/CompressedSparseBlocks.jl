@@ -5,7 +5,6 @@ export SparseMatrixCSB
 using Libdl, LinearAlgebra, SparseArrays, DocStringExtensions, CSB_jll
 
 import LinearAlgebra:
-import LinearAlgebra:
   mul!
 
 import Base:
