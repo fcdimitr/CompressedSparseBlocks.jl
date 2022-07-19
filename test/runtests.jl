@@ -1,5 +1,5 @@
 using CompressedSparseBlocks
-using Test, Random, SparseArrays
+using Test, Random, SparseArrays, LinearAlgebra
 
 enabled_tests = lowercase.(ARGS)
 function addtests(fname)

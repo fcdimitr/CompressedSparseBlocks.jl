@@ -40,7 +40,7 @@ $(TYPEDSIGNATURES)
 
 Query the number of `Cilk` workers.
 """
-getWorkers() = @ccall libcsb.getWorkers()::Cint
+getWorkers() = Int64( @ccall libcsb.getWorkers()::Cint )
 
 @doc """
 $(TYPEDSIGNATURES)
@@ -201,7 +201,7 @@ nnz( A::Adjoint{Tv,SparseMatrixCSB{Tv,Ti}} ) where {Tv,Ti}  = A.parent.nz
 
 CSBTYPES = Union{SparseMatrixCSB{Tv,Ti},LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},Transpose{Tv,SparseMatrixCSB{Tv,Ti}}} where {Tv,Ti}
 
-function Base.print_matrix(io::IO, S::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}}) where {Tv,Ti}
+function Base.print_matrix(io::IO, S::CSBTYPES)
 
 end
 
