@@ -44,7 +44,7 @@ end
 
 @testset "CSB too small matrices" begin
 
-  min_size = CompressedSparseBlocks.SLACKNESS * CompressedSparseBlocks.getWorkers()
+  min_size = Int( 2^floor( log2( CompressedSparseBlocks.SLACKNESS * CompressedSparseBlocks.getWorkers() ) ) )
 
   for i = 0 : min_size
     @test_throws ErrorException("Matrix too small.") SparseMatrixCSB( sprand(i, i, 0.5) );
