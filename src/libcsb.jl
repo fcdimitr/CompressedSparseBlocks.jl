@@ -94,7 +94,7 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
     end
 
     @eval @inline function _gespmvtCSB!(
-      y::Vector{$Tv}, A::LinearAlgebra.Adjoint{$Tv,SparseMatrixCSB{$Tv,$Ti}}, x::Vector{$Tv})
+      y::Vector{$Tv}, A::CSBTRANS, x::Vector{$Tv})
       ccall( ($("gespmvt_" * Tvname * "_" * Tiname), libcsb), Ptr{Cvoid},
              (Ptr{Cvoid}, Ptr{$Tv}, Ptr{$Tv}),
              A.parent.ptr, x, y)
@@ -110,7 +110,7 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
 
       end
       @eval @inline function _gespmmtCSB!(
-        y::Matrix{$Tv}, A::LinearAlgebra.Adjoint{$Tv,SparseMatrixCSB{$Tv,$Ti}}, x::Matrix{$Tv}, ::Val{$DIM})
+        y::Matrix{$Tv}, A::CSBTRANS, x::Matrix{$Tv}, ::Val{$DIM})
         ccall( ($("gespmmt_" * Tvname * "_" * Tiname * "_" * string(DIM) * "_rhs"), libcsb), Ptr{Cvoid},
                (Ptr{Cvoid}, Ptr{$Tv}, Ptr{$Tv}, Cint, Cint),
                A.parent.ptr, x, y, size(y,1), size(x,1) )
