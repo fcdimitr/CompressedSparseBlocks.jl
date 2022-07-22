@@ -20,6 +20,11 @@ mutable struct SparseMatrixCSB{Tv,Ti} <: SparseArrays.AbstractSparseMatrix{Tv,Ti
   end
 end
 
+CSBTRANS = Union{LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},Transpose{Tv,SparseMatrixCSB{Tv,Ti}}} where {Tv,Ti}
+CSBTYPES = Union{SparseMatrixCSB{Tv,Ti},LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},Transpose{Tv,SparseMatrixCSB{Tv,Ti}}} where {Tv,Ti}
+
+
+
 @doc """
 
 $(TYPEDSIGNATURES)
@@ -166,7 +171,7 @@ end
 
 # transpose
 
-function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}}, x::AbstractVector) where {Tv,Ti}
+function mul!(y::AbstractVecOrMat, A::CSBTRANS, x::AbstractVector) where {Tv,Ti}
 
   @assert size(y,1) == size(A,1)
   @assert size(x,1) == size(A,2)
@@ -177,7 +182,7 @@ function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{T
 
 end
 
-function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}}, x::AbstractMatrix) where {Tv,Ti}
+function mul!(y::AbstractVecOrMat, A::CSBTRANS, x::AbstractMatrix) where {Tv,Ti}
 
   @assert size(y,1) == size(A,1)
   @assert size(x,1) == size(A,2)
@@ -197,9 +202,7 @@ end
 
 size( A::SparseMatrixCSB ) = (A.m, A.n)
 nnz( A::SparseMatrixCSB )  = A.nz
-nnz( A::Adjoint{Tv,SparseMatrixCSB{Tv,Ti}} ) where {Tv,Ti}  = A.parent.nz
-
-CSBTYPES = Union{SparseMatrixCSB{Tv,Ti},LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},Transpose{Tv,SparseMatrixCSB{Tv,Ti}}} where {Tv,Ti}
+nnz( A::CSBTRANS ) where {Tv,Ti}  = A.parent.nz
 
 function Base.print_matrix(io::IO, S::CSBTYPES)
 
