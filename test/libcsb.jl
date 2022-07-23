@@ -35,6 +35,7 @@ end
   B = SparseMatrixCSB( Auint32 )
   @test nnz(B) == nnz(A)
   @test nnz(B') == nnz(A)
+  @test nnz(transpose(B)) == nnz(A)
   @test size(B) == size(A)
   finalize( B )
   sleep(0.1)
