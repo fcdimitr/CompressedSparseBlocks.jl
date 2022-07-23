@@ -1,8 +1,8 @@
 # Julia Interface to Matrix-Vector Multiplications in CSB Format
 
-| **Documentation**                                                               | **Build Status**                                                                                |
-|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] |
+| **Documentation**                                                               | **Build Status**                                                                                | **Contributing** |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----:|
+| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] |
 
 
 We provide a `Julia` interface (a wrapper) to the `Compressed Sparse
@@ -101,4 +101,8 @@ Aristotle University of Thessaloniki, Thessaloniki 54124, Greece
 [codecov-img]: https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/fcdimitr/CompressedSparseBlocks.jl
 
+[license-img]: https://img.shields.io/github/license/fcdimitr/CompressedSparseBlocks.jl.svg
+[license-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/blob/main/LICENSE
+
+[issues-img]: https://img.shields.io/github/issues/fcdimitr/CompressedSparseBlocks.jl.svg
 [issues-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/issues
