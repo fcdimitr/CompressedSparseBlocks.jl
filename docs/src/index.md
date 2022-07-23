@@ -6,6 +6,8 @@ CurrentModule = CompressedSparseBlocks
 
 Documentation for [CompressedSparseBlocks](https://github.com/fcdimitr/CompressedSparseBlocks.jl).
 
+## Why and when should I use `CompressedSparseBlocks`?
+
 If you have a computation with an iteration where the time is dominated by a large sparse matrix multiplication, 
 
 ```julia
@@ -50,6 +52,8 @@ julia> yct ≈ yt
 true
 ```
 
+
+## API
 
 ```@index
 ```
