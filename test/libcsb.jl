@@ -35,6 +35,7 @@ end
   B = SparseMatrixCSB( Auint32 )
   @test nnz(B) == nnz(A)
   @test nnz(B') == nnz(A)
+  @test nnz(transpose(B)) == nnz(A)
   @test size(B) == size(A)
   finalize( B )
   sleep(0.1)
@@ -44,7 +45,7 @@ end
 
 @testset "CSB too small matrices" begin
 
-  min_size = CompressedSparseBlocks.SLACKNESS * CompressedSparseBlocks.getWorkers()
+  min_size = Int( 2^floor( log2( CompressedSparseBlocks.SLACKNESS * CompressedSparseBlocks.getWorkers() ) ) )
 
   for i = 0 : min_size
     @test_throws ErrorException("Matrix too small.") SparseMatrixCSB( sprand(i, i, 0.5) );
@@ -98,9 +99,11 @@ end
 
   B = SparseMatrixCSB( A )
   @test A' * xt ≈ B' * xt
+  @test transpose(A) * xt ≈ transpose(B) * xt
 
   B = SparseMatrixCSB( Auint32 )
   @test Auint32' * xt ≈ B' * xt
+  @test transpose(Auint32) * xt ≈ transpose(B) * xt
 
 end
 
@@ -110,22 +113,26 @@ end
   @testset "d = $d" for d = 1:32
     xx = rand( m, d )
     @test A' * xx ≈ B' * xx
+    @test transpose(A) * xx ≈ transpose(B) * xx
   end
 
   @testset "d = 33" begin
     xx = rand( m, 33 )
     @test_throws DimensionMismatch B'*xx;
+    @test_throws DimensionMismatch transpose(B)*xx;
   end
 
   B = SparseMatrixCSB( Auint32 )
   @testset "d = $d" for d = 1:32
     xx = rand( m, d )
     @test Auint32' * xx ≈ B' * xx
+    @test transpose(Auint32) * xx ≈ transpose(B) * xx
   end
 
   @testset "d = 33" begin
     xx = rand( m, 33 )
     @test_throws DimensionMismatch B'*xx;
+    @test_throws DimensionMismatch transpose(B)*xx;
   end
 
 end

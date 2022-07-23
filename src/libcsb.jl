@@ -20,6 +20,10 @@ mutable struct SparseMatrixCSB{Tv,Ti} <: SparseArrays.AbstractSparseMatrix{Tv,Ti
   end
 end
 
+CSBTYPES = Union{SparseMatrixCSB{Tv,Ti},LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},Transpose{Tv,SparseMatrixCSB{Tv,Ti}}} where {Tv,Ti}
+
+
+
 @doc """
 
 $(TYPEDSIGNATURES)
@@ -95,6 +99,13 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
              A.parent.ptr, x, y)
 
     end
+    @eval @inline function _gespmvtCSB!(
+      y::Vector{$Tv}, A::LinearAlgebra.Transpose{$Tv,SparseMatrixCSB{$Tv,$Ti}}, x::Vector{$Tv})
+      ccall( ($("gespmvt_" * Tvname * "_" * Tiname), libcsb), Ptr{Cvoid},
+             (Ptr{Cvoid}, Ptr{$Tv}, Ptr{$Tv}),
+             A.parent.ptr, x, y)
+
+    end
 
     for DIM in 2:32
       @eval @inline function _gespmmCSB!(
@@ -106,6 +117,13 @@ for (Tv, Tvname) in ((Cdouble, "double"), )
       end
       @eval @inline function _gespmmtCSB!(
         y::Matrix{$Tv}, A::LinearAlgebra.Adjoint{$Tv,SparseMatrixCSB{$Tv,$Ti}}, x::Matrix{$Tv}, ::Val{$DIM})
+        ccall( ($("gespmmt_" * Tvname * "_" * Tiname * "_" * string(DIM) * "_rhs"), libcsb), Ptr{Cvoid},
+               (Ptr{Cvoid}, Ptr{$Tv}, Ptr{$Tv}, Cint, Cint),
+               A.parent.ptr, x, y, size(y,1), size(x,1) )
+
+      end
+      @eval @inline function _gespmmtCSB!(
+        y::Matrix{$Tv}, A::LinearAlgebra.Transpose{$Tv,SparseMatrixCSB{$Tv,$Ti}}, x::Matrix{$Tv}, ::Val{$DIM})
         ccall( ($("gespmmt_" * Tvname * "_" * Tiname * "_" * string(DIM) * "_rhs"), libcsb), Ptr{Cvoid},
                (Ptr{Cvoid}, Ptr{$Tv}, Ptr{$Tv}, Cint, Cint),
                A.parent.ptr, x, y, size(y,1), size(x,1) )
@@ -166,7 +184,11 @@ end
 
 # transpose
 
-function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}}, x::AbstractVector) where {Tv,Ti}
+function mul!(
+  y::AbstractVecOrMat,
+  A::Union{Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},
+           Transpose{Tv,SparseMatrixCSB{Tv,Ti}}},
+  x::AbstractVector) where {Tv,Ti}
 
   @assert size(y,1) == size(A,1)
   @assert size(x,1) == size(A,2)
@@ -177,7 +199,11 @@ function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{T
 
 end
 
-function mul!(y::AbstractVecOrMat, A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}}, x::AbstractMatrix) where {Tv,Ti}
+function mul!(
+  y::AbstractVecOrMat,
+  A::Union{Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},
+           Transpose{Tv,SparseMatrixCSB{Tv,Ti}}},
+  x::AbstractMatrix) where {Tv,Ti}
 
   @assert size(y,1) == size(A,1)
   @assert size(x,1) == size(A,2)
@@ -197,9 +223,8 @@ end
 
 size( A::SparseMatrixCSB ) = (A.m, A.n)
 nnz( A::SparseMatrixCSB )  = A.nz
-nnz( A::Adjoint{Tv,SparseMatrixCSB{Tv,Ti}} ) where {Tv,Ti}  = A.parent.nz
-
-CSBTYPES = Union{SparseMatrixCSB{Tv,Ti},LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}},Transpose{Tv,SparseMatrixCSB{Tv,Ti}}} where {Tv,Ti}
+nnz( A::LinearAlgebra.Adjoint{Tv,SparseMatrixCSB{Tv,Ti}} ) where {Tv,Ti}  = A.parent.nz
+nnz( A::LinearAlgebra.Transpose{Tv,SparseMatrixCSB{Tv,Ti}} ) where {Tv,Ti}  = A.parent.nz
 
 function Base.print_matrix(io::IO, S::CSBTYPES)
 
