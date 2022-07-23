@@ -98,9 +98,11 @@ end
 
   B = SparseMatrixCSB( A )
   @test A' * xt ≈ B' * xt
+  @test transpose(A) * xt ≈ transpose(B) * xt
 
   B = SparseMatrixCSB( Auint32 )
   @test Auint32' * xt ≈ B' * xt
+  @test transpose(Auint32) * xt ≈ transpose(B) * xt
 
 end
 
@@ -110,22 +112,26 @@ end
   @testset "d = $d" for d = 1:32
     xx = rand( m, d )
     @test A' * xx ≈ B' * xx
+    @test transpose(A) * xx ≈ transpose(B) * xx
   end
 
   @testset "d = 33" begin
     xx = rand( m, 33 )
     @test_throws DimensionMismatch B'*xx;
+    @test_throws DimensionMismatch transpose(B)*xx;
   end
 
   B = SparseMatrixCSB( Auint32 )
   @testset "d = $d" for d = 1:32
     xx = rand( m, d )
     @test Auint32' * xx ≈ B' * xx
+    @test transpose(Auint32) * xx ≈ transpose(B) * xx
   end
 
   @testset "d = 33" begin
     xx = rand( m, 33 )
     @test_throws DimensionMismatch B'*xx;
+    @test_throws DimensionMismatch transpose(B)*xx;
   end
 
 end
