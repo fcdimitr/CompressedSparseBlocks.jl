@@ -1,4 +1,4 @@
-using LinearAlgebra, SparseArrays, CompressedSparseBlocks
+using LinearAlgebra, SparseArrays, CompressedSparseBlocks, ThreadedSparseArrays
 using BenchmarkTools
 using MKLSparse  # to enable multithreaded Sparse CSC MV
 using CairoMakie # to enable plotting
@@ -11,15 +11,18 @@ function benchmark_csr_mv(sizes, densities, dims)
   times_csct = zeros(length(sizes), length(densities), length(dims))
   times_csb  = zeros(length(sizes), length(densities), length(dims))
   times_csbt = zeros(length(sizes), length(densities), length(dims))
+  times_tsa  = zeros(length(sizes), length(densities), length(dims))
+  times_tsat = zeros(length(sizes), length(densities), length(dims))
 
   for (i, n) in enumerate(sizes)
     for (j, d) in enumerate(densities)
       for (k, r) in enumerate(dims)
 
-        @info "Running ($n, $n) with average degree $d and $r RHS vectors"
+        @info "Running ($n, $n) with average degree $d times $r vector(s)"
 
         A = sprand( n, n, d/n );
         B = SparseMatrixCSB( A );
+        C = ThreadedSparseMatrixCSC( A );
 
         if r == 1
           x  = rand(n )
@@ -27,20 +30,28 @@ function benchmark_csr_mv(sizes, densities, dims)
           y2 = zeros(n)
           y3 = zeros(n)
           y4 = zeros(n)
+          y5 = zeros(n)
+          y6 = zeros(n)
         else
           x  = rand( n, r)
           y1 = zeros(n, r)
           y2 = zeros(n, r)
           y3 = zeros(n, r)
           y4 = zeros(n, r)
+          y5 = zeros(n, r)
+          y6 = zeros(n, r)
         end
         times_csc[ i,j,k] = @belapsed mul!($y1, $A,    $x)
         times_csct[i,j,k] = @belapsed mul!($y2, $(A'), $x)
         times_csb[ i,j,k] = @belapsed mul!($y3, $B,    $x)
         times_csbt[i,j,k] = @belapsed mul!($y4, $(B'), $x)
+        times_tsa[ i,j,k] = @belapsed mul!($y5, $C,    $x)
+        times_tsat[i,j,k] = @belapsed mul!($y6, $(C'), $x)
 
         @assert y1 ≈ y3
         @assert y2 ≈ y4
+        @assert y1 ≈ y5
+        @assert y2 ≈ y6
 
       end
     end
@@ -73,6 +84,8 @@ function make_figure(
     for j = 1:n
       # scatterlines!( axs[i,j], sizes, vec( times_csc[: ,j,i]  ) .* 1e6; label = "CSC" )
       scatterlines!( axs[i,j], sizes, vec( times_csct[:,j,i] )  .\ vec( times_csc[: ,j,i]  ); label = "CSC transp." )
+      scatterlines!( axs[i,j], sizes, vec( times_tsa[: ,j,i]  ) .\ vec( times_csc[: ,j,i]  ); label = "TSA" )
+      scatterlines!( axs[i,j], sizes, vec( times_tsat[:,j,i] )  .\ vec( times_csc[: ,j,i]  ); label = "TSA transp." )
       scatterlines!( axs[i,j], sizes, vec( times_csb[: ,j,i]  ) .\ vec( times_csc[: ,j,i]  ); label = "CSB" )
       scatterlines!( axs[i,j], sizes, vec( times_csbt[:,j,i] )  .\ vec( times_csc[: ,j,i]  ); label = "CSB transp." )
     end
