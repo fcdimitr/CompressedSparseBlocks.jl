@@ -57,14 +57,14 @@ function benchmark_csr_mv(sizes, densities, dims)
     end
   end
 
-  return times_csc, times_csct, times_csb, times_csbt
+  return times_csc, times_csct, times_csb, times_csbt, times_tsa, times_tsat
 
 end
 
 
 function make_figure(
   sizes, densities, dims,
-  times_csc, times_csct, times_csb, times_csbt )
+  times_csc, times_csct, times_csb, times_csbt, times_tsa, times_tsat )
 
   f = Figure( ; resolution = (1600,1200) );
 
