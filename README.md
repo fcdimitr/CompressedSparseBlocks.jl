@@ -1,8 +1,8 @@
 # Julia Interface to Matrix-Vector Multiplications in CSB Format
 
-| **Documentation**                                                               | **Build Status**                                                                                | **Contributing** | **Extra** |
+| **Documentation**                                                               | **Build Status**                                                                                | **Contributing** | **Extras** |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----:|:------:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] | [![][style-img]][style-url] [![][aqua-img]][aquq-url] |
+| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] | [![][style-img]][style-url] [![][aqua-img]][aqua-url] |
 
 
 We provide a `Julia` interface (a wrapper) to the `Compressed Sparse
