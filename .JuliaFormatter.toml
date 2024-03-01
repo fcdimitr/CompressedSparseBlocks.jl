@@ -1,0 +1,7 @@
+style = "blue"
+margin = 92
+indent = 4
+remove_extra_newlines = false
+conditional_to_if = true
+always_use_return = true
+separate_kwargs_with_semicolon = true

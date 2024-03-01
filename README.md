@@ -1,8 +1,8 @@
 # Julia Interface to Matrix-Vector Multiplications in CSB Format
 
-| **Documentation**                                                               | **Build Status**                                                                                | **Contributing** |
-|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] |
+| **Documentation**                                                               | **Build Status**                                                                                | **Contributing** | **Extra** |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----:|:------:|
+| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![CI][github-action-img]][github-action-url] [![][codecov-img]][codecov-url] | [![][issues-img]][issues-url] [![][license-img]][license-url] | [![][style-img]][style-url] [![][aqua-img]][aquq-url] |
 
 
 We provide a `Julia` interface (a wrapper) to the `Compressed Sparse
@@ -45,6 +45,8 @@ following command
 ``` julia
 pkg> add CompressedSparseBlocks
 ```
+
+> :warning: **CompressedSparseBlocks is currently not working on Windows and native M1 Macs**: Either use WSL2 on Windows or use the package via `Rosetta 2` on the M-processor Macs (that means by using the `x86` and not the `arm64` `julia`).
 
 ## Documentation
 
@@ -108,3 +110,9 @@ Aristotle University of Thessaloniki, Thessaloniki 54124, Greece
 
 [issues-img]: https://img.shields.io/github/issues/fcdimitr/CompressedSparseBlocks.jl.svg
 [issues-url]: https://github.com/fcdimitr/CompressedSparseBlocks.jl/issues
+
+[style-img]: https://img.shields.io/badge/code%20style-blue-4495d1.svg
+[style-url]: https://github.com/invenia/BlueStyle
+
+[aqua-img]: https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg
+[aqua-url]: https://github.com/JuliaTesting/Aqua.jl

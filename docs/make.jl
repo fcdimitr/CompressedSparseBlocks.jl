@@ -1,7 +1,9 @@
 using CompressedSparseBlocks
 using Documenter
 
-DocMeta.setdocmeta!(CompressedSparseBlocks, :DocTestSetup, :(using CompressedSparseBlocks); recursive=true)
+DocMeta.setdocmeta!(
+    CompressedSparseBlocks, :DocTestSetup, :(using CompressedSparseBlocks); recursive=true
+)
 
 makedocs(;
     modules=[CompressedSparseBlocks],
@@ -13,12 +15,7 @@ makedocs(;
         canonical="https://fcdimitr.github.io/CompressedSparseBlocks.jl",
         assets=String[],
     ),
-    pages=[
-        "Introduction" => "index.md",
-    ],
+    pages=["Introduction" => "index.md"],
 )
 
-deploydocs(;
-    repo="github.com/fcdimitr/CompressedSparseBlocks.jl",
-    devbranch="main",
-)
+deploydocs(; repo="github.com/fcdimitr/CompressedSparseBlocks.jl", devbranch="main")
